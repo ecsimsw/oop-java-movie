@@ -18,7 +18,7 @@ public class Movie {
         this.price = price;
     }
 
-    public boolean isSameId(int id){
+    public boolean isSameId(int id) {
         return this.id == id;
     }
 
@@ -26,15 +26,15 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
-    public PlaySchedule getPlayScheduleById(int id){
+    public PlaySchedule getPlayScheduleById(int id) {
         return playSchedules.get(id);
     }
 
-    public void book(PlaySchedule playSchedule, int person){
+    public void book(PlaySchedule playSchedule, int person) {
         playSchedule.booked(person);
     }
 
-    public int getPrice(int person){
+    public int getPrice(int person) {
         return price * person;
     }
 

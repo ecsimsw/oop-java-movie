@@ -15,23 +15,23 @@ public class OutputView {
         }
     }
 
-    public static void printPayment(){
+    public static void printPayment() {
         printMsg(ANNOUNCE_PROCEED_PAYMENT);
     }
 
-    public static void printTotalPrice(int totalPrice){
+    public static void printTotalPrice(int totalPrice) {
         printfMsg(ANNOUNCE_TOTAL_PRICE, totalPrice);
     }
 
-    public static void printPaymentComplete(){
+    public static void printPaymentComplete() {
         printMsg(ANNOUNCE_PAYMENT_COMPLETE);
     }
 
-    public static void printfMsg(String msg, Object... args){
+    public static void printfMsg(String msg, Object... args) {
         System.out.printf(msg, args);
     }
 
-    public static void printMsg(String msg){
+    public static void printMsg(String msg) {
         System.out.print(msg);
     }
 }
