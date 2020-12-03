@@ -6,6 +6,8 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieController {
+    private static final int BOOK_MORE_BUTTON = 1;
+
     public MovieController(){
 
     }
@@ -14,7 +16,7 @@ public class MovieController {
         printMovies();
         do{
             bookOneMovie();
-        }while(true);
+        }while(checkBookMore());
     }
 
     public void bookOneMovie(){
@@ -51,5 +53,12 @@ public class MovieController {
             IAE.printStackTrace();
             return askPerson(playSchedule);
         }
+    }
+
+    private boolean checkBookMore(){
+        if(InputView.askBookMoreOrPay() == BOOK_MORE_BUTTON){
+            return true;
+        }
+        return false;
     }
 }

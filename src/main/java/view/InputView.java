@@ -25,12 +25,17 @@ public class InputView {
     }
 
     public static int inputTimeId() {
-        System.out.println("## 예약할 시간을 선택하세요.");
+        OutputView.printMsg("## 예약할 시간을 선택하세요.\n");
         return Integer.parseInt(getInput());
     }
 
     public static int inputPerson() {
-        System.out.println("## 예약할 인원을 선택하세요.");
+        OutputView.printMsg("## 예약할 인원을 선택하세요.\n");
+        return Integer.parseInt(getInput());
+    }
+
+    public static int askBookMoreOrPay(){
+        OutputView.printMsg("## 예약을 종료하고 결제를 진행하려면 1, 추가 2.\n");
         return Integer.parseInt(getInput());
     }
 
