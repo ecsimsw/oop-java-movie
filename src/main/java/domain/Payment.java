@@ -34,10 +34,10 @@ public class Payment {
 
     private int priceAfterDiscount(int point, int paymentMethod) {
         if (paymentMethod == PAYMENT_METHOD_CARD) {
-            return (totalPrice - point) * (100 - DISCOUNT_RATE_CARD);
+            return (totalPrice - point) * (100 - DISCOUNT_RATE_CARD) / 100;
         }
         if (paymentMethod == PAYMENT_METHOD_CASH) {
-            return (totalPrice - point) * (100 - DISCOUNT_RATE_CASH);
+            return (totalPrice - point) * (100 - DISCOUNT_RATE_CASH) / 100;
         }
         throw new IllegalArgumentException("잘못된 접근입니다.");
     }

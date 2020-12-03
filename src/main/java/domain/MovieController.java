@@ -6,7 +6,9 @@ import view.OutputView;
 import java.util.List;
 
 public class MovieController {
-    private static final int BOOK_MORE_BUTTON = 1;
+    private static final int BOOK_MORE_BUTTON = 2;
+    private static final int STOP_AND_PAYMENT_BUTTON = 1;
+
     private final Payment payment;
 
     public MovieController() {
