@@ -33,6 +33,16 @@ public class InputView {
         return getInteger();
     }
 
+    public static int askPointMoney(){
+        OutputView.printMsg("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0을 입력하세요\n");
+        return getInteger();
+    }
+
+    public static int askCardOrCash(){
+        OutputView.printMsg("## 신용카드는 1번, 현금은 2번을 입력하세요.\n");
+        return getInteger();
+    }
+
     private static int getInteger(){
         return scanner.nextInt();
     }

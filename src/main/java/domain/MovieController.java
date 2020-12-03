@@ -22,6 +22,8 @@ public class MovieController {
             movie.book(playSchedule, person);
             payment.addPrice(movie.getPrice(person));
         }while(checkBookMore());
+
+        payment.payment();
     }
 
     private void printMovies(){
