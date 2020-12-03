@@ -16,7 +16,7 @@ public class InputView {
     public static Movie getMovie() {
         System.out.println("## 예약할 영화를 선택하세요.");
         try {
-            return MovieRepository.getMovieById(getInteger());
+            return MovieRepository.getMovieById(getIntegerBiggerThan(0));
         } catch (IllegalArgumentException IAE) {
             OutputView.printMsg(IAE.getMessage());
             return getMovie();
@@ -54,11 +54,11 @@ public class InputView {
             InputValidator.checkNumberSmallThan(input, underLimit);
             return input;
         }catch (NumberFormatException NFE){
-            OutputView.printMsg("숫자를 입력해주세요.");
-            return askCardOrCash();
+            OutputView.printMsg("숫자를 입력해주세요.\n");
+            return getIntegerBiggerThan(underLimit);
         }catch (IllegalArgumentException IAE){
             OutputView.printMsg(IAE.getMessage());
-            return askCardOrCash();
+            return getIntegerBiggerThan(underLimit);
         }
     }
 
@@ -68,11 +68,11 @@ public class InputView {
             InputValidator.checkNumberInRange(input, min, max);
             return input;
         }catch (NumberFormatException NFE){
-            OutputView.printMsg("숫자를 입력해주세요.");
-            return askCardOrCash();
+            OutputView.printMsg("숫자를 입력해주세요.\n");
+            return getIntegerInRage(min,max);
         }catch (IllegalArgumentException IAE){
             OutputView.printMsg(IAE.getMessage());
-            return askCardOrCash();
+            return getIntegerInRage(min,max);
         }
     }
 
