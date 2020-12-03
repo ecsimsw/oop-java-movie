@@ -17,8 +17,8 @@ public class PlaySchedule {
         capacity -= person;
     }
 
-    public void checkAcceptable(int person){
-        if(person > capacity){
+    public void checkIsAcceptable(int person){
+        if(person > person){
             throw new IllegalArgumentException("인원 초과입니다.");
         }
     }

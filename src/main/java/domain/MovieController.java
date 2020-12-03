@@ -19,6 +19,11 @@ public class MovieController {
         }while(checkBookMore());
     }
 
+    private void printMovies(){
+        List<Movie> movies = MovieRepository.getMovies();
+        OutputView.printMovies(movies);
+    }
+
     public void bookOneMovie(){
         Movie movie = InputView.getMovie();
         PlaySchedule playSchedule = askPlaySchedule(movie);
@@ -28,37 +33,29 @@ public class MovieController {
         movie.getPrice(person);
     }
 
-    private void printMovies(){
-        List<Movie> movies = MovieRepository.getMovies();
-        OutputView.printMovies(movies);
-    }
-
     private PlaySchedule askPlaySchedule(Movie movie){
-        PlaySchedule playSchedule;
-        int timeId;
-        do{
-            timeId = InputView.inputTimeId();
-            playSchedule = movie.getPlayScheduleById(timeId+1);
-            // 없는 스케줄 번호 에러 출력
-        }while(playSchedule == null);
-        return playSchedule;
+        try{
+            int timeId = InputView.inputTimeId();
+            PlaySchedule playSchedule = movie.getPlayScheduleById(timeId+1);
+            return playSchedule;
+        }catch (IllegalArgumentException IAE){
+            OutputView.printMsg(IAE.getMessage());
+            return askPlaySchedule(movie);
+        }
     }
 
     private int askPerson(PlaySchedule playSchedule){
-        int person = InputView.inputPerson();
         try{
-            playSchedule.checkAcceptable(person);
+            int person = InputView.inputPerson();
+            playSchedule.checkIsAcceptable(person);
             return person;
         }catch (IllegalArgumentException IAE){
-            IAE.printStackTrace();
+            OutputView.printMsg(IAE.getMessage());
             return askPerson(playSchedule);
         }
     }
 
     private boolean checkBookMore(){
-        if(InputView.askBookMoreOrPay() == BOOK_MORE_BUTTON){
-            return true;
-        }
-        return false;
+        return InputView.askBookMoreOrPay() == BOOK_MORE_BUTTON;
     }
 }

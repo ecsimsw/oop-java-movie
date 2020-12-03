@@ -18,12 +18,12 @@ public class Movie {
         this.price = price;
     }
 
-    public void addPlaySchedule(PlaySchedule playSchedule) {
-        playSchedules.add(playSchedule);
-    }
-
     public boolean isSameId(int id){
         return this.id == id;
+    }
+
+    public void addPlaySchedule(PlaySchedule playSchedule) {
+        playSchedules.add(playSchedule);
     }
 
     public PlaySchedule getPlayScheduleById(int id){
