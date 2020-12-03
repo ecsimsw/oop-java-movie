@@ -7,30 +7,26 @@ import java.util.List;
 
 public class MovieController {
     private static final int BOOK_MORE_BUTTON = 1;
+    private final Payment payment;
 
     public MovieController(){
-
+        payment = new Payment();
     }
 
     public void playBookSystem(){
         printMovies();
         do{
-            bookOneMovie();
+            Movie movie = InputView.getMovie();
+            PlaySchedule playSchedule = askPlaySchedule(movie);
+            int person = askPerson(playSchedule);
+            movie.book(playSchedule, person);
+            payment.addPrice(movie.getPrice(person));
         }while(checkBookMore());
     }
 
     private void printMovies(){
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-    }
-
-    public void bookOneMovie(){
-        Movie movie = InputView.getMovie();
-        PlaySchedule playSchedule = askPlaySchedule(movie);
-        int person = askPerson(playSchedule);
-
-        movie.book(playSchedule, person);
-        movie.getPrice(person);
     }
 
     private PlaySchedule askPlaySchedule(Movie movie){
