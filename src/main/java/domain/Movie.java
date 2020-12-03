@@ -30,6 +30,14 @@ public class Movie {
         return playSchedules.get(id);
     }
 
+    public void book(PlaySchedule playSchedule, int person){
+        playSchedule.booked(person);
+    }
+
+    public int getPrice(int person){
+        return price * person;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

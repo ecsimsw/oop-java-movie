@@ -13,6 +13,10 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public void booked(int person){
+        capacity -= person;
+    }
+
     public void checkAcceptable(int person){
         if(person > capacity){
             throw new IllegalArgumentException("인원 초과입니다.");

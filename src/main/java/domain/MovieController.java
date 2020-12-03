@@ -10,12 +10,20 @@ public class MovieController {
 
     }
 
-    public void book(){
+    public void playBookSystem(){
         printMovies();
+        do{
+            bookOneMovie();
+        }while(true);
+    }
 
+    public void bookOneMovie(){
         Movie movie = InputView.getMovie();
         PlaySchedule playSchedule = askPlaySchedule(movie);
         int person = askPerson(playSchedule);
+
+        movie.book(playSchedule, person);
+        movie.getPrice(person);
     }
 
     private void printMovies(){
@@ -24,9 +32,10 @@ public class MovieController {
     }
 
     private PlaySchedule askPlaySchedule(Movie movie){
-        PlaySchedule playSchedule = null;
+        PlaySchedule playSchedule;
+        int timeId;
         do{
-            int timeId = InputView.inputTimeId();
+            timeId = InputView.inputTimeId();
             playSchedule = movie.getPlayScheduleById(timeId+1);
             // 없는 스케줄 번호 에러 출력
         }while(playSchedule == null);
