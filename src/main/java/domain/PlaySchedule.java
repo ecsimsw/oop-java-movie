@@ -13,6 +13,12 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
+    public void checkAcceptable(int person){
+        if(person > capacity){
+            throw new IllegalArgumentException("인원 초과입니다.");
+        }
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
