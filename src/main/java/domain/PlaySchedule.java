@@ -13,7 +13,7 @@ public class PlaySchedule {
         this.capacity = capacity;
     }
 
-    public void booked(int person) {
+    public void updateCapacity(int person) {
         capacity -= person;
     }
 

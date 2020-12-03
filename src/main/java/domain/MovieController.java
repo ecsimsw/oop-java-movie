@@ -16,11 +16,8 @@ public class MovieController {
     public void playBookSystem() {
         printMovies();
         do {
-            Movie movie = InputView.getMovie();
-            PlaySchedule playSchedule = askPlaySchedule(movie);
-            int person = askPerson(playSchedule);
-            movie.book(playSchedule, person);
-            payment.addPrice(movie.getPrice(person));
+            Reservation reservation = new Reservation();
+            payment.addPrice(reservation.calculatePrice());
         } while (checkBookMore());
 
         payment.payment();
@@ -29,28 +26,6 @@ public class MovieController {
     private void printMovies() {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-    }
-
-    private PlaySchedule askPlaySchedule(Movie movie) {
-        try {
-            int timeId = InputView.inputTimeId();
-            PlaySchedule playSchedule = movie.getPlayScheduleById(timeId + 1);
-            return playSchedule;
-        } catch (IllegalArgumentException IAE) {
-            OutputView.printMsg(IAE.getMessage());
-            return askPlaySchedule(movie);
-        }
-    }
-
-    private int askPerson(PlaySchedule playSchedule) {
-        try {
-            int person = InputView.inputPerson();
-            playSchedule.checkIsAcceptable(person);
-            return person;
-        } catch (IllegalArgumentException IAE) {
-            OutputView.printMsg(IAE.getMessage());
-            return askPerson(playSchedule);
-        }
     }
 
     private boolean checkBookMore() {
