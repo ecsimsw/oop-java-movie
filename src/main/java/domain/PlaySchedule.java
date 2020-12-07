@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
 
-public class PlaySchedule {
+public class PlaySchedule{
     private final LocalDateTime startDateTime;
     private int capacity;
 
@@ -15,6 +15,10 @@ public class PlaySchedule {
 
     public boolean isAcceptable(int numberOfPeople){
         return capacity >= numberOfPeople;
+    }
+
+    public LocalDateTime getStartDateTime(){
+        return startDateTime;
     }
 
     @Override

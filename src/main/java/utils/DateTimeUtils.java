@@ -26,4 +26,20 @@ public class DateTimeUtils {
         LocalDateTime endDateTime = dateTime1.plusHours(ONE_HOURS);
         return dateTime2.isAfter(startDateTime) && dateTime2.isBefore(endDateTime);
     }
+
+    private static void checkOneHourWithinRange(LocalDateTime dateTime1, LocalDateTime dateTime2) {
+        if(!isOneHourWithinRange(dateTime1, dateTime2)){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkInRange(LocalDateTime time, LocalDateTime first, LocalDateTime last){
+        if(time.isBefore(first)){
+            checkOneHourWithinRange(time, last);
+        }
+
+        if(time.isAfter(last)){
+            checkOneHourWithinRange(time, first);
+        }
+    }
 }

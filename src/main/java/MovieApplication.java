@@ -13,9 +13,7 @@ public class MovieApplication {
         OutputView.printMovies(movies);
 
         do{
-            Movie movie = InputView.getMovie();
-            PlaySchedule playSchedule = InputView.getSchedule(movie);
-            int numberOfPeople = InputView.inputNumberOfPeople(playSchedule);
+
         }while(InputView.askTicketingMore());
 
     }
