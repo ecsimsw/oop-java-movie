@@ -21,6 +21,10 @@ public class PlaySchedule{
         return startDateTime;
     }
 
+    public void reduceCapacity(int numberOfReserved){
+        capacity -= numberOfReserved;
+    }
+
     @Override
     public String toString() {
         return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";

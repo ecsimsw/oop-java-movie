@@ -35,6 +35,11 @@ public class Movie {
         return price * numberOfPeople;
     }
 
+    public ReservedInfo reserve(PlaySchedule playSchedule, int numberOfPeople){
+        playSchedule.reduceCapacity(numberOfPeople);
+        return ReservedInfo.create(name, price, playSchedule.getStartDateTime(), numberOfPeople);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
