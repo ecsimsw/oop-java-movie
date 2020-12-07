@@ -1,5 +1,10 @@
 package view;
 
+import domain.Movie;
+import domain.MovieRepository;
+import domain.Movies;
+import domain.PlaySchedule;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -7,31 +12,34 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputMovieId() {
+    public static Movie getMovie() {
+        OutputView.printMsg("## 예약할 영화를 선택하세요.\n");
+
         try{
-            OutputView.printMsg("## 예약할 영화를 선택하세요.\n");
-            return getInteger();
-        }catch (Exception e){
-            return inputMovieId();
+            return Movies.getMovieById(getInteger());
+        }catch (Exception E){
+            OutputView.printMsg("존재하지 않는 영화입니다. \n");
+            return getMovie();
         }
     }
 
-    public static int inputTimeId() {
+    public static PlaySchedule getSchedule(Movie movie) {
         try{
             OutputView.printMsg("## 예약할 시간를 선택하세요.\n");
-            return getInteger();
+            return movie.getScheduleById( getInteger());
         }catch (Exception e){
-            return inputMovieId();
+            OutputView.printMsg("존재하지 않는 시간 번호입니다. \n");
+            return getSchedule(movie);
         }
     }
 
-    public static int inputNumberOfPeople() {
-        try{
-            OutputView.printMsg("## 예약할 인원을 입력하세요.\n");
-            return getInteger();
-        }catch (Exception e){
-            return inputMovieId();
+    public static int inputNumberOfPeople(PlaySchedule playSchedule) {
+        OutputView.printMsg("## 예약할 인원을 입력하세요.\n");
+        int numberOfPeople = getInteger();
+        if(playSchedule.isAcceptable(numberOfPeople)){
+            return numberOfPeople;
         }
+        return inputNumberOfPeople(playSchedule);
     }
 
     private static int getInteger(){
