@@ -1,9 +1,6 @@
 package view;
 
-import domain.Movie;
-import domain.MovieRepository;
-import domain.Movies;
-import domain.PlaySchedule;
+import domain.*;
 import utils.DateTimeUtils;
 
 import java.util.List;
@@ -25,20 +22,15 @@ public class InputView {
         }
     }
 
-    public static PlaySchedule getSchedule(Movie movie, List<LocalDateTime> reservedList) {
+    public static PlaySchedule getSchedule(Movie movie, ReservedTimes reservedTimes) {
         try{
             OutputView.printMsg("## 예약할 시간를 선택하세요.\n");
             PlaySchedule playSchedule = movie.getScheduleById(getInteger());
-
-            LocalDateTime time = playSchedule.getStartDateTime();
-            LocalDateTime firstTime = reservedList.get(0);
-            LocalDateTime lastTime = reservedList.get(reservedList.size()-1);
-
-            DateTimeUtils.checkInRange(time, firstTime, lastTime);
+            reservedTimes.checkValidTime(playSchedule.getStartDateTime());
             return playSchedule;
         }catch (Exception e){
-            OutputView.printMsg("잘못된 시간 번호입니다. \n");
-            return getSchedule(movie, reservedList);
+            OutputView.printMsg(e.getMessage());
+            return getSchedule(movie, reservedTimes);
         }
     }
 
