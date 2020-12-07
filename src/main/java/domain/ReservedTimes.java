@@ -19,8 +19,8 @@ public class ReservedTimes {
             return;
         }
 
-        if(DateTimeUtils.isOneHourWithinRange(firstTime, newTime)
-                || DateTimeUtils.isOneHourWithinRange(lastTime, newTime)){
+        if(!DateTimeUtils.isOneHourWithinRange(firstTime, newTime)
+                || !DateTimeUtils.isOneHourWithinRange(lastTime, newTime)){
             throw new IllegalArgumentException("1시간 이상 차이나는 시간 예약 불가");
         }
     }
