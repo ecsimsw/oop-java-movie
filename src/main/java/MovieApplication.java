@@ -1,5 +1,7 @@
 import domain.Movie;
 import domain.MovieRepository;
+import domain.PlaySchedule;
+import jdk.internal.util.xml.impl.Input;
 import view.InputView;
 import view.OutputView;
 
@@ -10,8 +12,11 @@ public class MovieApplication {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        int movieId = InputView.inputMovieId();
+        do{
+            Movie movie = InputView.getMovie();
+            PlaySchedule playSchedule = InputView.getSchedule(movie);
+            int numberOfPeople = InputView.inputNumberOfPeople(playSchedule);
+        }while(InputView.askTicketingMore());
 
-        // TODO 구현 진행
     }
 }

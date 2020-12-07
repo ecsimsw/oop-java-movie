@@ -14,7 +14,6 @@ public class InputView {
 
     public static Movie getMovie() {
         OutputView.printMsg("## 예약할 영화를 선택하세요.\n");
-
         try{
             return Movies.getMovieById(getInteger());
         }catch (Exception E){
@@ -40,6 +39,18 @@ public class InputView {
             return numberOfPeople;
         }
         return inputNumberOfPeople(playSchedule);
+    }
+
+    public static boolean askTicketingMore(){
+        int answer = getInteger();
+
+        // 범위 처리
+
+        if(answer == 1){
+            return false;
+        }
+
+        return true;
     }
 
     private static int getInteger(){
