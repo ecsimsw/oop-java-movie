@@ -6,7 +6,7 @@ import java.util.List;
 import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
-    private static final String TODAY = "2020-12-08 ";
+    private static final String TODAY = "2020-12-08";
 
     private static List<Movie> movies = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class MovieRepository {
         movie2.addPlaySchedule(new PlaySchedule(createDateTime(TODAY+" 08:00"), 3));
         movie2.addPlaySchedule(new PlaySchedule(createDateTime(TODAY+" 10:30"), 5));
         movie2.addPlaySchedule(new PlaySchedule(createDateTime(TODAY+" 13:00"), 5));
-        movie2.addPlaySchedule(new PlaySchedule(createDateTime(TODAY+" 5:30"), 5));
+        movie2.addPlaySchedule(new PlaySchedule(createDateTime(TODAY+" 15:30"), 5));
         movies.add(movie2);
 
         Movie movie3 = new Movie(7, "파이브피트", 9_000);
