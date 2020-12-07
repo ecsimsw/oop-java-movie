@@ -11,6 +11,6 @@ public class Movies {
         return movies.stream()
                 .filter(movie -> movie.isId(id))
                 .findFirst()
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
