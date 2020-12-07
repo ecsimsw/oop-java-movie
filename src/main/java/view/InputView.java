@@ -1,13 +1,14 @@
 package view;
 
 import domain.*;
-import utils.DateTimeUtils;
+import utils.InputValidator;
 
-import java.util.List;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class InputView {
+    private static final int EXIT_RESERVATION = 1;
+    private static final int MORE_RESERVATION = 2;
+
     private InputView(){}
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -15,7 +16,9 @@ public class InputView {
     public static Movie getMovie() {
         OutputView.printMsg("## 예약할 영화를 선택하세요.\n");
         try{
-            return Movies.getMovieById(getInteger());
+            int movieId = getInteger();
+            InputValidator.checkPositive(movieId);
+            return Movies.getMovieById(movieId);
         }catch (Exception E){
             OutputView.printMsg("존재하지 않는 영화입니다. \n");
             return getMovie();
@@ -36,26 +39,30 @@ public class InputView {
 
     public static int inputNumberOfPeople(PlaySchedule playSchedule) {
         OutputView.printMsg("## 예약할 인원을 입력하세요.\n");
-        int numberOfPeople = getInteger();
-        if(playSchedule.isAcceptable(numberOfPeople)){
+        try{
+            int numberOfPeople = getInteger();
+            InputValidator.checkPositive(numberOfPeople);
+            playSchedule.checkAcceptable(numberOfPeople);
             return numberOfPeople;
+        }catch (Exception e) {
+            OutputView.printMsg(e.getMessage());
+            return inputNumberOfPeople(playSchedule);
         }
-
-        OutputView.printMsg("유효하지 않은 인원 입력입니다.");
-        return inputNumberOfPeople(playSchedule);
     }
 
     public static boolean askTicketingMore(){
         OutputView.printMsg("## 예약을 종료하고 결제를 진행하려면 1, 추가 예약을 진행하시려면 2\n");
-        int answer = getInteger();
-
-        // 범위 처리
-
-        if(answer == 1){
-            return false;
+        try{
+            int answer = getInteger();
+            InputValidator.checkValidRange(answer, EXIT_RESERVATION, MORE_RESERVATION);
+            if(answer == EXIT_RESERVATION){
+                return false;
+            }
+            return true;
+        }catch (Exception e){
+            OutputView.printMsg(e.getMessage());
+            return askTicketingMore();
         }
-
-        return true;
     }
 
     private static int getInteger(){

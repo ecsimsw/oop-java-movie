@@ -13,8 +13,10 @@ public class PlaySchedule{
         this.capacity = capacity;
     }
 
-    public boolean isAcceptable(int numberOfPeople){
-        return capacity >= numberOfPeople;
+    public void checkAcceptable(int numberOfPeople){
+        if(capacity < numberOfPeople){
+            throw new IllegalArgumentException("가능 인원 초과입니다.");
+        }
     }
 
     public LocalDateTime getStartDateTime(){
