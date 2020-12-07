@@ -40,10 +40,13 @@ public class InputView {
         if(playSchedule.isAcceptable(numberOfPeople)){
             return numberOfPeople;
         }
+
+        OutputView.printMsg("유효하지 않은 인원 입력입니다.");
         return inputNumberOfPeople(playSchedule);
     }
 
     public static boolean askTicketingMore(){
+        OutputView.printMsg("## 예약을 종료하고 결제를 진행하려면 1, 추가 예약을 진행하시려면 2\n");
         int answer = getInteger();
 
         // 범위 처리
