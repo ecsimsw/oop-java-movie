@@ -9,7 +9,7 @@ import java.util.List;
 public class Ticketing {
     private int totalPrice = 0;
     private final ReservedTimes reservedTimes = new ReservedTimes();
-    private final List<ReservedInfo> reservedInfos = new ArrayList<>();
+    private final List<TicketInfo> ticketInfos = new ArrayList<>();
 
     public Ticketing(){}
 
@@ -17,14 +17,15 @@ public class Ticketing {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
         do{
-            ReservedInfo info = makeReservation();
-            reservedInfos.add(info);
+            TicketInfo info = makeReservation();
+            ticketInfos.add(info);
         }while(InputView.askTicketingMore());
 
-        printReservedInfos();
+        OutputView.printTicketInfo(ticketInfos);
+        OutputView.AnnouncePayment();
     }
 
-    private ReservedInfo makeReservation(){
+    private TicketInfo makeReservation(){
         Movie movie = InputView.getMovie();
         PlaySchedule playSchedule = InputView.getSchedule(movie, reservedTimes);
         reservedTimes.addNew(playSchedule.getStartDateTime());
@@ -33,11 +34,5 @@ public class Ticketing {
         totalPrice += movie.calculatePrice(numberOfPeople);
 
         return movie.reserve(playSchedule,numberOfPeople);
-    }
-
-    private void printReservedInfos(){
-        for(ReservedInfo info : reservedInfos){
-            OutputView.printTicketInfo(info);
-        }
     }
 }

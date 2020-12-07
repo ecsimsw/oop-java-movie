@@ -1,8 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Movie {
     private static final char NEW_LINE = '\n';
 
@@ -35,9 +32,9 @@ public class Movie {
         return price * numberOfPeople;
     }
 
-    public ReservedInfo reserve(PlaySchedule playSchedule, int numberOfPeople){
+    public TicketInfo reserve(PlaySchedule playSchedule, int numberOfPeople){
         playSchedule.reduceCapacity(numberOfPeople);
-        return ReservedInfo.create(name, price, playSchedule.getStartDateTime(), numberOfPeople);
+        return TicketInfo.create(name, price, playSchedule.getStartDateTime(), numberOfPeople);
     }
 
     @Override
