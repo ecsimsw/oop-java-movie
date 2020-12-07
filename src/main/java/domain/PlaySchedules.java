@@ -15,7 +15,7 @@ public class PlaySchedules implements Iterable<PlaySchedule> {
     public PlaySchedule getById(int id){
         PlaySchedule playSchedule = playSchedules.get(id);
         if(playSchedule == null){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("시간 정보가 없습니다.");
         }
         return playSchedule;
     }
