@@ -31,6 +31,10 @@ public class Movie {
         return playSchedules.getById(id);
     }
 
+    public int calculatePrice(int numberOfPeople){
+        return price * numberOfPeople;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
