@@ -18,8 +18,20 @@ public class Movie {
         this.price = price;
     }
 
-    void addPlaySchedule(PlaySchedule playSchedule) {
+    public boolean isSameId(int id) {
+        return this.id == id;
+    }
+
+    public void addPlaySchedule(PlaySchedule playSchedule) {
         playSchedules.add(playSchedule);
+    }
+
+    public PlaySchedule getPlayScheduleById(int id) {
+        return playSchedules.get(id);
+    }
+
+    public int calculatePrice(int person) {
+        return price * person;
     }
 
     @Override
