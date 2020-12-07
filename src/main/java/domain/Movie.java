@@ -20,19 +20,19 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
-    public boolean isId(int id){
+    public boolean isId(int id) {
         return this.id == id;
     }
 
-    public PlaySchedule getScheduleById(int id){
+    public PlaySchedule getScheduleById(int id) {
         return playSchedules.getById(id);
     }
 
-    public int calculatePrice(int numberOfPeople){
+    public int calculatePrice(int numberOfPeople) {
         return price * numberOfPeople;
     }
 
-    public TicketInfo reserve(PlaySchedule playSchedule, int numberOfPeople){
+    public TicketInfo reserve(PlaySchedule playSchedule, int numberOfPeople) {
         playSchedule.reduceCapacity(numberOfPeople);
         return TicketInfo.create(name, price, playSchedule.getStartDateTime(), numberOfPeople);
     }

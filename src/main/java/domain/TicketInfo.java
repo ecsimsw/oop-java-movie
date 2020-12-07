@@ -8,30 +8,30 @@ public class TicketInfo {
     private LocalDateTime startTime;
     private int numberOfPeople;
 
-    private TicketInfo(String name, int price, LocalDateTime time, int count){
-        this.name= name;
+    private TicketInfo(String name, int price, LocalDateTime time, int count) {
+        this.name = name;
         this.numberOfPeople = count;
         this.price = price;
         this.startTime = time;
     }
 
-    public static TicketInfo create(String name, int price, LocalDateTime time, int count){
+    public static TicketInfo create(String name, int price, LocalDateTime time, int count) {
         return new TicketInfo(name, price, time, count);
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getPrice(){
+    public int getPrice() {
         return price;
     }
 
-    public LocalDateTime getStartTime(){
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public int getNumberOfPeople(){
+    public int getNumberOfPeople() {
         return numberOfPeople;
     }
 }

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
 
-public class PlaySchedule{
+public class PlaySchedule {
     private final LocalDateTime startDateTime;
     private int capacity;
 
@@ -13,17 +13,17 @@ public class PlaySchedule{
         this.capacity = capacity;
     }
 
-    public void checkAcceptable(int numberOfPeople){
-        if(capacity < numberOfPeople){
+    public void checkAcceptable(int numberOfPeople) {
+        if (capacity < numberOfPeople) {
             throw new IllegalArgumentException("가능 인원 초과입니다.");
         }
     }
 
-    public LocalDateTime getStartDateTime(){
+    public LocalDateTime getStartDateTime() {
         return startDateTime;
     }
 
-    public void reduceCapacity(int numberOfReserved){
+    public void reduceCapacity(int numberOfReserved) {
         capacity -= numberOfReserved;
     }
 

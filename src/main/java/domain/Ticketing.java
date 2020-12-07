@@ -16,25 +16,26 @@ public class Ticketing {
     private int totalPrice = 0;
     private final ReservedTimes reservedTimes = new ReservedTimes();
 
-    public Ticketing(){}
+    public Ticketing() {
+    }
 
-    public void run(){
+    public void run() {
         final List<TicketInfo> ticketInfos = new ArrayList<>();
 
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
-        do{
+        do {
             TicketInfo info = makeReservation();
             ticketInfos.add(info);
-        }while(InputView.askTicketingMore());
+        } while (InputView.askTicketingMore());
 
         OutputView.printTicketInfo(ticketInfos);
 
         makePayment();
     }
 
-    private TicketInfo makeReservation(){
+    private TicketInfo makeReservation() {
         Movie movie = InputView.getMovie();
         PlaySchedule playSchedule = InputView.getSchedule(movie, reservedTimes);
         reservedTimes.addNew(playSchedule.getStartDateTime());
@@ -42,10 +43,10 @@ public class Ticketing {
         int numberOfPeople = InputView.inputNumberOfPeople(playSchedule);
         totalPrice += movie.calculatePrice(numberOfPeople);
 
-        return movie.reserve(playSchedule,numberOfPeople);
+        return movie.reserve(playSchedule, numberOfPeople);
     }
 
-    private void makePayment(){
+    private void makePayment() {
         OutputView.AnnouncePayment();
         int point = InputView.getPoint();
         int leftPrice = totalPrice - point;
@@ -54,15 +55,15 @@ public class Ticketing {
         OutputView.printPaymentInfo(paidPrice);
     }
 
-    private int discount(int price){
+    private int discount(int price) {
         int answer = InputView.askCardOrCash();
 
-        if( answer == PAY_WITH_CARD){
-            return price * (100- CARD_DISCOUNT_RATE) /100;
+        if (answer == PAY_WITH_CARD) {
+            return price * (100 - CARD_DISCOUNT_RATE) / 100;
         }
 
-        if(answer == PAY_WITH_CASH){
-            return price * (100 - CASH_DISCOUNT_RATE) /100;
+        if (answer == PAY_WITH_CASH) {
+            return price * (100 - CASH_DISCOUNT_RATE) / 100;
         }
 
         throw new IllegalArgumentException("잘못된 접근입니다.");
