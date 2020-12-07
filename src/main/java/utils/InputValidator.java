@@ -10,7 +10,7 @@ public class InputValidator {
     }
 
     public static void checkPositive(int input){
-        if(input <= 0){
+        if(input < 0){
             throw new IllegalArgumentException("숫자는 양수만 입력 가능합니다.");
         }
     }

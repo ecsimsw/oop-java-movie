@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class InputView {
     private static final int EXIT_RESERVATION = 1;
     private static final int MORE_RESERVATION = 2;
+    private static final int PAY_WITH_CARD = 1;
+    private static final int PAY_WITH_CASH = 2;
 
     private InputView(){}
 
@@ -65,11 +67,35 @@ public class InputView {
         }
     }
 
+    public static int getPoint(){
+        OutputView.printMsg("## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0을 입력하세요.\n");
+        try{
+            int point = getInteger();
+            InputValidator.checkPositive(point);
+            return point;
+        }catch (Exception e) {
+            OutputView.printMsg(e.getMessage());
+            return getPoint();
+        }
+    }
+
+    public static int askCardOrCash(){
+        OutputView.printMsg("## 신용카드는 1번 현금은 2번을 입력해주세요\n");
+        try{
+            int answer = getInteger();
+            InputValidator.checkValidRange(answer, PAY_WITH_CARD, PAY_WITH_CASH);
+            return answer;
+        }catch (Exception e){
+            OutputView.printMsg(e.getMessage());
+            return askCardOrCash();
+        }
+    }
+
     private static int getInteger(){
         try{
             return Integer.parseInt(getInput());
         }catch (Exception e){
-            OutputView.printMsg("숫자를 입력하세요.");
+            OutputView.printMsg("숫자를 입력하세요.\n");
             return getInteger();
         }
     }
