@@ -13,11 +13,12 @@ public class PlaySchedules implements Iterable<PlaySchedule> {
     }
 
     public PlaySchedule getById(int id){
-        PlaySchedule playSchedule = playSchedules.get(id);
-        if(playSchedule == null){
+        try{
+            PlaySchedule playSchedule = playSchedules.get(id);
+            return playSchedule;
+        }catch (Exception e){
             throw new IllegalArgumentException("시간 정보가 없습니다.");
         }
-        return playSchedule;
     }
 
     public void add(PlaySchedule playSchedule) {
