@@ -23,8 +23,10 @@ public class PlaySchedule {
         return startDateTime;
     }
 
-    // 메소드 자체에서 numberOfPeople는 어떤 값일지 전혀 모르는 상황이므로
-    // 예외 처리 필요
+//    reduceCapacity의 numberOfPeople은 함수 호출 전
+//    capacity보다 작은지 미리 검증하지만,
+//    메소드 단위에서는 알 수 없으므로 예외 처리 필요
+
     public void reduceCapacity(int numberOfPeople) {
         if(capacity - numberOfPeople < 0){
             throw new IllegalArgumentException("잘못된 예약 죄석 수 입니다.");

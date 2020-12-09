@@ -32,9 +32,9 @@ public class Movie {
         return price * numberOfPeople;
     }
 
-    public TicketInfo reserve(PlaySchedule playSchedule, int numberOfPeople) {
+    public Ticket reserve(PlaySchedule playSchedule, int numberOfPeople) {
         playSchedule.reduceCapacity(numberOfPeople);
-        return TicketInfo.create(name, price, playSchedule.getStartDateTime(), numberOfPeople);
+        return Ticket.create(name, price, playSchedule.getStartDateTime(), numberOfPeople);
     }
 
     @Override

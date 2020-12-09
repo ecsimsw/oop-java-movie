@@ -1,7 +1,7 @@
 package view;
 
 import domain.Movie;
-import domain.TicketInfo;
+import domain.Ticket;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ public class OutputView {
         }
     }
 
-    public static void printTicketInfo(List<TicketInfo> ticketInfos) {
-        for (TicketInfo info : ticketInfos) {
+    public static void printTicketInfo(List<Ticket> tickets) {
+        for (Ticket info : tickets) {
             printfMsg(TICKET_INFO_MESSAGE,
                     info.getName(),
                     info.getPrice(),

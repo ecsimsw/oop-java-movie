@@ -1,6 +1,5 @@
 package domain;
 
-import utils.InputValidator;
 import view.InputView;
 import view.OutputView;
 
@@ -20,22 +19,22 @@ public class Ticketing {
     }
 
     public void run() {
-        final List<TicketInfo> ticketInfos = new ArrayList<>();
+        final List<Ticket> tickets = new ArrayList<>();
 
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
 
         do {
-            TicketInfo info = makeReservation();
-            ticketInfos.add(info);
+            Ticket info = makeReservation();
+            tickets.add(info);
         } while (InputView.askTicketingMore());
 
-        OutputView.printTicketInfo(ticketInfos);
+        OutputView.printTicketInfo(tickets);
 
         makePayment();
     }
 
-    private TicketInfo makeReservation() {
+    private Ticket makeReservation() {
         Movie movie = InputView.getMovie();
         PlaySchedule playSchedule = InputView.getSchedule(movie, reservedTimes);
         reservedTimes.addNew(playSchedule.getStartDateTime());
