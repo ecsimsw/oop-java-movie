@@ -1,12 +1,11 @@
-package domain;
-
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ticketing {
+public class TicketingController {
     private static final int CARD_DISCOUNT_RATE = 5;
     private static final int CASH_DISCOUNT_RATE = 3;
     private static final int PAY_WITH_CARD = 1;
@@ -15,7 +14,7 @@ public class Ticketing {
     private int totalPrice = 0;
     private final ReservedTimes reservedTimes = new ReservedTimes();
 
-    public Ticketing() {
+    public TicketingController() {
     }
 
     public void run() {
