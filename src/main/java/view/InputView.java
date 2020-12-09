@@ -22,8 +22,8 @@ public class InputView {
             int movieId = getInteger();
             InputValidator.checkPositive(movieId);
             return Movies.getMovieById(movieId);
-        } catch (Exception E) {
-            OutputView.printMsg("존재하지 않는 영화입니다. \n");
+        } catch (Exception e) {
+            OutputView.printMsg(e.getMessage()+"\n");
             return getMovie();
         }
     }
