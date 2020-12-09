@@ -42,7 +42,8 @@ public class Ticketing {
         int numberOfPeople = InputView.inputNumberOfPeople(playSchedule);
         totalPrice += movie.calculatePrice(numberOfPeople);
 
-        return movie.reserve(playSchedule, numberOfPeople);
+        movie.reserve(playSchedule, numberOfPeople);
+        return movie.getTicket(playSchedule, numberOfPeople);
     }
 
     private void makePayment() {
