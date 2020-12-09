@@ -20,12 +20,12 @@ public class OutputView {
     }
 
     public static void printTicketInfo(List<Ticket> tickets) {
-        for (Ticket info : tickets) {
+        for (Ticket ticket : tickets) {
             printfMsg(TICKET_INFO_MESSAGE,
-                    info.getName(),
-                    info.getPrice(),
-                    info.getStartTime(),
-                    info.getCount());
+                    ticket.getName(),
+                    ticket.getPrice(),
+                    ticket.getStartTime(),
+                    ticket.getCount());
         }
     }
 
