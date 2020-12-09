@@ -8,10 +8,12 @@ public class Movies {
     private Movies() {
     }
 
+    // getById 패턴은 잘 쓰일 것 같다.
     public static Movie getMovieById(int id) {
         return movies.stream()
                 .filter(movie -> movie.isId(id))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+//                .orElseThrow(IllegalArgumentException::new);  에러 메시지를 남기는 것이 더 좋겠다.
+                .orElseThrow(()->new IllegalArgumentException("검색 정보 없음"));
     }
 }
