@@ -48,22 +48,24 @@ public class Ticketing {
 
     private void makePayment() {
         OutputView.AnnouncePayment();
-        int point = InputView.getPoint();
-        int leftPrice = totalPrice - point;
-
-        int paidPrice = discount(leftPrice);
-        OutputView.printPaymentInfo(paidPrice);
+        usePoint();
+        discountByPaymentMethod();
+        OutputView.printPaymentInfo(totalPrice);
     }
 
-    private int discount(int price) {
-        int answer = InputView.askCardOrCash();
+    private void usePoint(){
+        totalPrice -= InputView.getPoint();
+    }
 
-        if (answer == PAY_WITH_CARD) {
-            return price * (100 - CARD_DISCOUNT_RATE) / 100;
+    private int discountByPaymentMethod() {
+        int paymentMethod = InputView.askCardOrCash();
+
+        if (paymentMethod == PAY_WITH_CARD) {
+            totalPrice *= (100 - CARD_DISCOUNT_RATE) / 100;
         }
 
-        if (answer == PAY_WITH_CASH) {
-            return price * (100 - CASH_DISCOUNT_RATE) / 100;
+        if (paymentMethod == PAY_WITH_CASH) {
+            totalPrice *= (100 - CASH_DISCOUNT_RATE) / 100;
         }
 
         throw new IllegalArgumentException("잘못된 접근입니다.");
