@@ -38,7 +38,7 @@ public class Reservation {
 
     private static PlaySchedule setSchedule(Movie movie, ReservedTimes reservedTimes) {
         final PlaySchedule schedule = InputView.getSchedule(movie, reservedTimes);
-        reservedTimes.addNew(schedule.getStartDateTime());
+        reservedTimes.add(schedule.getStartDateTime());
         return schedule;
     }
 
