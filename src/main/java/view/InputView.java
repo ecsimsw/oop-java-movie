@@ -21,7 +21,7 @@ public class InputView {
         try {
             int movieId = getInteger();
             InputValidator.checkPositive(movieId);
-            return Movies.getMovieById(movieId);
+            return MovieRepository.getMovieById(movieId);
         } catch (Exception e) {
             OutputView.printMsg(e.getMessage()+"\n");
             return getMovie();
