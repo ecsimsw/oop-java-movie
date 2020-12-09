@@ -25,7 +25,7 @@ public class OutputView {
                     info.getName(),
                     info.getPrice(),
                     info.getStartTime(),
-                    info.getNumberOfPeople());
+                    info.getCount());
         }
     }
 

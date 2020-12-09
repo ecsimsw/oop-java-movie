@@ -6,11 +6,11 @@ public class Ticket {
     private String name;
     private int price;
     private LocalDateTime startTime;
-    private int numberOfPeople;
+    private int count;
 
     private Ticket(String name, int price, LocalDateTime time, int count) {
         this.name = name;
-        this.numberOfPeople = count;
+        this.count = count;
         this.price = price;
         this.startTime = time;
     }
@@ -31,7 +31,7 @@ public class Ticket {
         return startTime;
     }
 
-    public int getNumberOfPeople() {
-        return numberOfPeople;
+    public int getCount() {
+        return count;
     }
 }

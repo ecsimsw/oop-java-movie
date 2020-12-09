@@ -24,8 +24,10 @@ public class TicketingController {
         OutputView.printMovies(movies);
 
         do {
-            Ticket info = makeReservation();
-            tickets.add(info);
+            Reservation newReservation = Reservation.create(reservedTimes);
+            totalPrice += newReservation.getPrice();
+            reservedTimes.addNew(newReservation.getStartTime());
+            tickets.add(newReservation.getTicket());
         } while (InputView.askTicketingMore());
 
         OutputView.printTicketInfo(tickets);
@@ -33,40 +35,24 @@ public class TicketingController {
         makePayment();
     }
 
-    private Ticket makeReservation() {
-        Movie movie = InputView.getMovie();
-        PlaySchedule playSchedule = InputView.getSchedule(movie, reservedTimes);
-        reservedTimes.addNew(playSchedule.getStartDateTime());
-
-        int numberOfPeople = InputView.inputNumberOfPeople(playSchedule);
-        totalPrice += movie.calculatePrice(numberOfPeople);
-
-        movie.reserve(playSchedule, numberOfPeople);
-        return movie.getTicket(playSchedule, numberOfPeople);
-    }
-
     private void makePayment() {
         OutputView.AnnouncePayment();
         usePoint();
-        discountByPaymentMethod();
+        discount(InputView.askCardOrCash());
         OutputView.printPaymentInfo(totalPrice);
     }
 
-    private void usePoint(){
+    private void usePoint() {
         totalPrice -= InputView.getPoint();
     }
 
-    private int discountByPaymentMethod() {
-        int paymentMethod = InputView.askCardOrCash();
-
-        if (paymentMethod == PAY_WITH_CARD) {
+    private void discount(int method){
+        if (method == PAY_WITH_CARD) {
             totalPrice *= (100 - CARD_DISCOUNT_RATE) / 100;
         }
 
-        if (paymentMethod == PAY_WITH_CASH) {
+        if (method == PAY_WITH_CASH) {
             totalPrice *= (100 - CASH_DISCOUNT_RATE) / 100;
         }
-
-        throw new IllegalArgumentException("잘못된 접근입니다.");
     }
 }
