@@ -14,6 +14,7 @@ public class PlaySchedules implements Iterable<PlaySchedule> {
     public PlaySchedule getById(int id) {
         try {
             PlaySchedule playSchedule = playSchedules.get(id);
+            // get은 사이즈보다 index가 크면 nullPointerException이다. 
             return playSchedule;
         } catch (Exception e) {
             throw new IllegalArgumentException("시간 정보가 없습니다.");
