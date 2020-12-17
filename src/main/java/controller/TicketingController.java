@@ -16,7 +16,8 @@ public class TicketingController {
         Movie movie = getMovie();
         PlaySchedule schedule = getPlaySchedule(movie);
         int count = getNumberOfTicket(schedule);
-        reservations.addReservation(new Reservation(movie,schedule,count));
+        Reservation reservation = Reservation.reserve(movie, schedule, count);
+        reservations.addReservation(reservation);
     }
 
     public boolean hasAdditionalBooking(){

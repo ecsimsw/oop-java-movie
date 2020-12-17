@@ -10,10 +10,15 @@ public class Reservation {
     private final PlaySchedule schedule;
     private final int count;
 
-    public Reservation(Movie movie, PlaySchedule schedule, int count){
+    private Reservation(Movie movie, PlaySchedule schedule, int count){
         this.movie = movie;
         this.schedule = schedule;
         this.count = count;
+    }
+
+    public static Reservation reserve(Movie movie, PlaySchedule schedule, int count){
+        schedule.reserved(count);
+        return new Reservation(movie, schedule, count);
     }
 
     public boolean isWithinOneHour(PlaySchedule playSchedule){
