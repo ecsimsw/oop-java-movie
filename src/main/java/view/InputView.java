@@ -18,6 +18,11 @@ public class InputView {
         return getInteger();
     }
 
+    public static int getCount(){
+        OutputView.println("예약할 인원을 선택하세요.");
+        return getInteger();
+    }
+
     private static int getInteger() {
         try {
             return Integer.parseInt(getInput());
