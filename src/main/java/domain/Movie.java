@@ -22,6 +22,10 @@ public class Movie {
         playSchedules.add(playSchedule);
     }
 
+    public PlaySchedule getPlayScheduleByIndex(int index){
+        return playSchedules.get(index-1);
+    }
+
     public boolean isId(int id){
         return this.id == id;
     }
