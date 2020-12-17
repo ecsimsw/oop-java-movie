@@ -15,7 +15,7 @@ public class TicketingController {
     public void doTicketing(){
         Movie movie = getMovie();
         PlaySchedule schedule = getPlaySchedule(movie);
-        int count = getCountOfTicket(schedule);
+        int count = getNumberOfTicket(schedule);
         reservations.addReservation(new Reservation(movie,schedule,count));
     }
 
@@ -40,23 +40,23 @@ public class TicketingController {
 
     private PlaySchedule getPlaySchedule(Movie movie){
         try{
-            int timeId = InputView.getTimeId();
-            // TODO :: 유효한 스케줄인지 확인
-            return movie.getPlayScheduleByIndex(timeId);
+            PlaySchedule schedule = movie.getPlayScheduleByIndex(InputView.getTimeId());
+            Validator.checkInvalidSchedule(reservations, schedule);
+            return schedule;
         }catch (Exception e){
             OutputView.printErrorMsg(e);
             return getPlaySchedule(movie);
         }
     }
 
-    private int getCountOfTicket(PlaySchedule playSchedule){
+    private int getNumberOfTicket(PlaySchedule playSchedule){
         try{
             int count = InputView.getCount();
             Validator.checkValidCount(playSchedule, count);
             return count;
         }catch (Exception e){
             OutputView.printErrorMsg(e);
-            return getCountOfTicket(playSchedule);
+            return getNumberOfTicket(playSchedule);
         }
     }
 }

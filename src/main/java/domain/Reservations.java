@@ -1,5 +1,7 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.LinkedList;
@@ -14,5 +16,10 @@ public class Reservations {
 
     public void addReservation(Reservation reservation){
         reservations.add(reservation);
+    }
+
+    public boolean isAcceptableSchedule(PlaySchedule newSchedule){
+        return reservations.stream()
+                .allMatch(reservation -> reservation.isWithinOneHour(newSchedule));
     }
 }
