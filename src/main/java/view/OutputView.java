@@ -1,9 +1,5 @@
 package view;
 
-import java.util.List;
-
-import domain.Movie;
-
 public class OutputView {
     private static final String ERROR_MESSAGE = "[ERROR] %s\n";
 
