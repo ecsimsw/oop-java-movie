@@ -20,6 +20,12 @@ public class Reservations {
                 .allMatch(reservation -> reservation.isWithinOneHour(newSchedule));
     }
 
+    public int getTotalPrice(){
+        return reservations.stream()
+                .mapToInt(Reservation::getPrice)
+                .sum();
+    }
+
     @Override
     public String toString(){
         return reservations.stream()

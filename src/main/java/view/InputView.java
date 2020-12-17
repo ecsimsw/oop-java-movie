@@ -10,6 +10,21 @@ public class InputView {
     private InputView() {
     }
 
+    public static int getPoint(int totalPrice){
+        OutputView.println("포인트 사용 금액을 입력하세요. 포인트가 없으면 0을 입력하세요");
+        int userInput = getInteger();
+
+        if(userInput < 0){
+            throw new IllegalArgumentException("포인트는 음수가 될 수 없습니다.");
+        }
+
+        if(userInput > totalPrice){
+            throw new IllegalArgumentException("사용하는 포인트는 전체 금액을 넘을 수 없습니다.");
+        }
+
+        return userInput;
+    }
+
     public static boolean getHasAdditionalBooking(){
         OutputView.println("예약을 종료하고 결제를 진행하려면 1, 추가 예약을 진행하시려면 2");
         int userInput = getInteger();
