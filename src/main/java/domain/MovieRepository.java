@@ -6,7 +6,7 @@ import java.util.List;
 import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
-    private static final String TODAY = "2020-12-08";
+    private static final String TODAY = "2020-12-17";
 
     private static List<Movie> movies = new ArrayList<>();
 
@@ -43,5 +43,12 @@ public class MovieRepository {
 
     public static List<Movie> getMovies() {
         return movies;
+    }
+
+    public static Movie getMovieById(int id){
+        return movies.stream()
+                .filter(movie -> movie.isId(id))
+                .findFirst()
+                .orElseThrow(()->new IllegalArgumentException("검색 결과 없음"));
     }
 }

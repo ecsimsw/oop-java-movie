@@ -8,11 +8,16 @@ public class InputView {
     private InputView() {
     }
 
+    public static int getMovieId(){
+        OutputView.println("예약할 영화를 선택하세요.");
+        return getInteger();
+    }
+
     private static int getInteger() {
         try {
             return Integer.parseInt(getInput());
         } catch (Exception e) {
-            OutputView.printMsg("숫자를 입력하세요.\n");
+            OutputView.println("정수 범위의 숫자를 입력하세요.");
             return getInteger();
         }
     }
