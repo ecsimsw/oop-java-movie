@@ -44,4 +44,11 @@ public class MovieRepository {
     public static List<Movie> getMovies() {
         return movies;
     }
+
+    public static Movie getMovieById(int id) {
+        return movies.stream()
+                .filter(movie -> movie.isId(id))
+                .findFirst()
+                .orElseThrow(()->new IllegalArgumentException("검색 정보 없음"));
+    }
 }
