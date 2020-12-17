@@ -1,11 +1,8 @@
 package domain;
 
-import utils.DateTimeUtils;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Reservations {
     private final List<Reservation> reservations;
@@ -21,5 +18,12 @@ public class Reservations {
     public boolean isAcceptableSchedule(PlaySchedule newSchedule){
         return reservations.stream()
                 .allMatch(reservation -> reservation.isWithinOneHour(newSchedule));
+    }
+
+    @Override
+    public String toString(){
+        return reservations.stream()
+                .map(Reservation::toString)
+                .collect(Collectors.joining("\n"));
     }
 }

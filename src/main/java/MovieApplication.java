@@ -1,6 +1,5 @@
 import controller.MovieController;
 import controller.TicketingController;
-import domain.MovieRepository;
 import domain.Reservations;
 import view.OutputView;
 
@@ -18,5 +17,6 @@ public class MovieApplication {
         do{
             ticketingController.doTicketing();
         }while(ticketingController.hasAdditionalBooking());
+        OutputView.print(reservations.toString());
     }
 }

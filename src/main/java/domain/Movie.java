@@ -30,6 +30,14 @@ public class Movie {
         return this.id == id;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
+    public int getPrice(){
+        return this.price;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
