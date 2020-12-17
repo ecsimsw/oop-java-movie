@@ -3,6 +3,7 @@ package view;
 import domain.MovieRepository;
 
 public class OutputView {
+    private static final String ERROR_MESSAGE = "[ERROR] %s\n";
 
     private OutputView() {
     }
@@ -11,6 +12,10 @@ public class OutputView {
         MovieRepository.getMovies()
                 .stream()
                 .forEach(OutputView::println);
+    }
+
+    public static void printErrorMsg(Exception e){
+        printf(ERROR_MESSAGE, e.getMessage());
     }
 
     public static void printf(String msg, Object... args) {
