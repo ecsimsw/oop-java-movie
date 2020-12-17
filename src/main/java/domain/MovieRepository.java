@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static utils.DateTimeUtils.createDateTime;
 
@@ -41,14 +42,16 @@ public class MovieRepository {
         movies.add(movie4);
     }
 
-    public static List<Movie> getMovies() {
-        return movies;
-    }
-
     public static Movie getMovieById(int id){
         return movies.stream()
                 .filter(movie -> movie.isId(id))
                 .findFirst()
                 .orElseThrow(()->new IllegalArgumentException("검색 결과 없음"));
+    }
+
+    public static List<String> getMovieInfo(){
+        return movies.stream()
+                .map(Movie::toString)
+                .collect(Collectors.toList());
     }
 }

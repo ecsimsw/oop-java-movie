@@ -1,17 +1,13 @@
 package view;
 
-import domain.MovieRepository;
+import java.util.List;
+
+import domain.Movie;
 
 public class OutputView {
     private static final String ERROR_MESSAGE = "[ERROR] %s\n";
 
     private OutputView() {
-    }
-
-    public static void printMovies(){
-        MovieRepository.getMovies()
-                .stream()
-                .forEach(OutputView::println);
     }
 
     public static void printErrorMsg(Exception e){
