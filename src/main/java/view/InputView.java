@@ -4,8 +4,25 @@ import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
+    private static final int MAKE_PAYMENT = 1;
+    private static final int HAS_ADDITIONAL_BOOKING = 2;
 
     private InputView() {
+    }
+
+    public static boolean getHasAdditionalBooking(){
+        OutputView.println("예약을 종료하고 결제를 진행하려면 1, 추가 예약을 진행하시려면 2");
+        int userInput = getInteger();
+
+        if(userInput == MAKE_PAYMENT){
+            return false;
+        }
+
+        if(userInput == HAS_ADDITIONAL_BOOKING){
+            return true;
+        }
+
+        throw new IllegalArgumentException("적절하지 않은 입력입니다.");
     }
 
     public static int getMovieId(){
